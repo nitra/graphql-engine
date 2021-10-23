@@ -1,0 +1,53 @@
+name: build-and-push
+on:
+  push
+
+jobs:
+  build-and-push:
+    name: build-and-push
+    runs-on: self-hosted
+    steps:
+      - id: secrets
+        uses: google-github-actions/get-secretmanager-secrets@main
+        with:
+          secrets: |-
+            docker-hub-token:nitraai/docker-hub
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: vitaliytv
+          password: ${{ steps.secrets.outputs.docker-hub-token }}
+
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker Context for Buildx
+        id: buildx-context
+        run: |
+          docker context create builders
+          
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+          endpoint: builders
+
+      - name: build amd64
+        run: |
+          docker buildx build amd64 \
+          --platform linux/amd64 \
+          --tag nitra/graphql-engine:manifest-amd64 \
+          --push
+
+      - name: create multiarch manifest
+        run: |          
+          docker manifest create \
+          nitra/graphql-engine:latest \
+          --amend nitra/graphql-engine:manifest-amd64 \
+          --amend nitra/graphql-engine:manifest-arm64 
+
+          docker manifest push nitra/graphql-engine:latest
+
+
+
