@@ -32,7 +32,14 @@ jobs:
         with:
           version: latest
           endpoint: builders
-
+          
+      - name: build arm64
+        run: |
+          docker buildx build arm64 \
+          --platform linux/arm64 \
+          --tag nitra/graphql-engine:manifest-arm64 \
+          --push
+          
       - name: build amd64
         run: |
           docker buildx build amd64 \
