@@ -1,0 +1,11 @@
+{
+  "name": "graphql-engine",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@cspell/dict-ru_ru": "^2.0.2",
+    "@cspell/dict-uk-ua": "^1.0.20",
+    "@nitra/cspell-dict": "^1.0.14",
+    "prettier-config-standard": "^4.0.0"
+  }
+}

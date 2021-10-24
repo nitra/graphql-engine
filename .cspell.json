@@ -1,0 +1,30 @@
+{
+  "version": "0.2",
+  "language": "en,uk,ru-ru,nitra",
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/**",
+    ".vscode",
+    "report"
+  ],
+  "words": [
+    "aarch",
+    "DBCC",
+    "fedormelexin",
+    "frigo",
+    "libtdsodbc",
+    "ntext",
+    "odbcinst",
+    "scbd",
+    "tdsodbc",
+    "TDSVER",
+    "weeknumber",
+    "Фикстуры"
+  ],
+  "import": [
+    "@nitra/cspell-dict/cspell-ext.json",
+    "@cspell/dict-ru_ru/cspell-ext.json",
+    "@cspell/dict-uk-ua/cspell-ext.json"
+  ]
+}
