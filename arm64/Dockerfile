@@ -2,6 +2,7 @@ FROM fedormelexin/graphql-engine-arm64:v2.0.10.cli-migrations-v3
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     tdsodbc \
+    postgresql-client-14 \
     && rm -rf /var/lib/apt/lists/* 
 
 # [FreeTDS][SQL Server]Unicode data in a Unicode-only collation or ntext data cannot be sent to clients
