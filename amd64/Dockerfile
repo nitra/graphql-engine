@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     gnupg 
 
 # [FreeTDS][SQL Server]Unicode data in a Unicode-only collation or ntext data cannot be sent to clients
-ENV TDSVER=7.4
+ENV TDSVER=7.3
 
 RUN echo "[FreeTDS]\n\
     Description = FreeTDS unixODBC Driver\n\
