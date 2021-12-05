@@ -1,4 +1,4 @@
-FROM fedormelexin/graphql-engine-arm64:v2.0.10.cli-migrations-v3
+FROM fedormelexin/graphql-engine-arm64:v2.1.0-beta.2.cli-migrations-v3
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     tdsodbc \

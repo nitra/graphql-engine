@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - v2.1
 
 jobs:
   build-and-push:
@@ -27,37 +28,34 @@ jobs:
         id: buildx-context
         run: |
           docker context create builders
-          
+
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
         with:
           version: latest
           endpoint: builders
-          
+
       - name: build arm64
         run: |
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
           docker buildx build arm64 \
           --platform linux/arm64 \
-          --tag nitra/graphql-engine:manifest-arm64 \
+          --tag nitra/graphql-engine:manifest-arm64-v2.1 \
           --push
-          
+
       - name: build amd64
         run: |
           docker buildx build amd64 \
           --platform linux/amd64 \
-          --tag nitra/graphql-engine:manifest-amd64 \
+          --tag nitra/graphql-engine:manifest-amd64-v2.1 \
           --push
 
       - name: create multiarch manifest
-        run: |          
+        run: |
           docker manifest create \
-          nitra/graphql-engine:latest \
-          --amend nitra/graphql-engine:manifest-amd64 \
-          --amend nitra/graphql-engine:manifest-arm64 
+          nitra/graphql-engine:v2.1 \
+          --amend nitra/graphql-engine:manifest-amd64-v2.1 \
+          --amend nitra/graphql-engine:manifest-arm64-v2.1 
 
-          docker manifest push nitra/graphql-engine:latest
-
-
-
+          docker manifest push nitra/graphql-engine:v2.1
