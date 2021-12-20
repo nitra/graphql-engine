@@ -1,4 +1,4 @@
-FROM hasura/graphql-engine:v2.0.10.cli-migrations-v3
+FROM hasura/graphql-engine:v2.1.1.cli-migrations-v3
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     tdsodbc \
@@ -15,9 +15,9 @@ RUN echo "[FreeTDS]\n\
 
 # pg_dump for postrges 14
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" >>  /etc/apt/sources.list.d/pgdg.list && \
- sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
- wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
- apt-get update && apt-get install -y \
+    sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    apt-get update && apt-get install -y \
     --no-install-recommends \
     postgresql-client-14 \
     && rm -rf /var/lib/apt/lists/* 
