@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install -y \
     tdsodbc \
     wget \
     ca-certificates \
-    gnupg 
+    gnupg \
+    && rm -rf /var/lib/apt/lists/* 
 
 # [FreeTDS][SQL Server]Unicode data in a Unicode-only collation or ntext data cannot be sent to clients
 ENV TDSVER=7.4
