@@ -40,21 +40,23 @@ jobs:
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
           docker buildx build arm64 \
           --platform linux/arm64 \
-          --tag nitra/graphql-engine:manifest-arm64-v2.1 \
+          --tag nitra/graphql-engine:manifest-arm64 \
+          --squash \
           --push
 
       - name: build amd64
         run: |
           docker buildx build amd64 \
           --platform linux/amd64 \
-          --tag nitra/graphql-engine:manifest-amd64-v2.1 \
+          --tag nitra/graphql-engine:manifest-amd64 \
+          --squash \
           --push
 
       - name: create multiarch manifest
         run: |
           docker manifest create \
-          nitra/graphql-engine:v2.1 \
-          --amend nitra/graphql-engine:manifest-amd64-v2.1 \
-          --amend nitra/graphql-engine:manifest-arm64-v2.1 
+          nitra/graphql-engine:latest \
+          --amend nitra/graphql-engine:manifest-amd64 \
+          --amend nitra/graphql-engine:manifest-arm64 
 
-          docker manifest push nitra/graphql-engine:v2.1
+          docker manifest push nitra/graphql-engine:latest
