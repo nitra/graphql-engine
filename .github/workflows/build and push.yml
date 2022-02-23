@@ -62,7 +62,7 @@ jobs:
       - name: create multiarch manifest
         run: |
           docker manifest create \
-          nitra/graphql-engine:latest \
+          nitra/graphql-engine:${{ env.IMAGE_TAG }} \
           --amend nitra/graphql-engine:manifest-amd64-${{ env.IMAGE_TAG }} \
           --amend nitra/graphql-engine:manifest-arm64-${{ env.IMAGE_TAG }} 
 
