@@ -4,6 +4,13 @@ on:
     branches:
       - main
 
+env:
+  IMAGE_TAG: v2.1
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   build-and-push:
     name: build-and-push
@@ -40,7 +47,7 @@ jobs:
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
           docker buildx build arm64 \
           --platform linux/arm64 \
-          --tag nitra/graphql-engine:manifest-arm64 \
+          --tag nitra/graphql-engine:manifest-arm64-${{ env.IMAGE_TAG }} \
           --squash \
           --push
 
@@ -48,7 +55,7 @@ jobs:
         run: |
           docker buildx build amd64 \
           --platform linux/amd64 \
-          --tag nitra/graphql-engine:manifest-amd64 \
+          --tag nitra/graphql-engine:manifest-amd64-${{ env.IMAGE_TAG }} \
           --squash \
           --push
 
@@ -56,7 +63,7 @@ jobs:
         run: |
           docker manifest create \
           nitra/graphql-engine:latest \
-          --amend nitra/graphql-engine:manifest-amd64 \
-          --amend nitra/graphql-engine:manifest-arm64 
+          --amend nitra/graphql-engine:manifest-amd64-${{ env.IMAGE_TAG }} \
+          --amend nitra/graphql-engine:manifest-arm64-${{ env.IMAGE_TAG }} 
 
-          docker manifest push nitra/graphql-engine:latest
+          docker manifest push nitra/graphql-engine:${{ env.IMAGE_TAG }}
