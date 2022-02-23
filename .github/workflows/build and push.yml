@@ -14,8 +14,21 @@ concurrency:
 jobs:
   build-and-push:
     name: build-and-push
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: "read"
+      id-token: "write"
+      
     steps:
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v0"
+        with:
+          workload_identity_provider: "projects/753698311885/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          service_account: "github-service-account@nitraai.iam.gserviceaccount.com"
+
       - id: secrets
         uses: google-github-actions/get-secretmanager-secrets@main
         with:

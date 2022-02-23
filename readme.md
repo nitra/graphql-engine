@@ -1,5 +1,7 @@
 # build
 
+For more information, see <https://github.com/nitra/graphql-engine>.
+
 ## arm
 
 ```bash
