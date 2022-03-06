@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  IMAGE_TAG: v2.2
+  IMAGE_TAG: v2.3
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -20,7 +20,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-      
+
     steps:
       - id: "auth"
         name: "Authenticate to Google Cloud"

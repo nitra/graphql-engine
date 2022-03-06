@@ -1,4 +1,4 @@
-FROM hasura/graphql-engine:v2.2.1.cli-migrations-v3
+FROM hasura/graphql-engine:v2.3.0.cli-migrations-v3
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     tdsodbc \
