@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - v2.3
 
 env:
   IMAGE_TAG: v2.3
