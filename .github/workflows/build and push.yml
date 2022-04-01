@@ -3,10 +3,10 @@ on:
   push:
     branches:
       - main
-      - v2.4
+      - v2.5
 
 env:
-  IMAGE_TAG: v2.4
+  IMAGE_TAG: v2.5
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -81,3 +81,13 @@ jobs:
           --amend nitra/graphql-engine:manifest-arm64-${{ env.IMAGE_TAG }} 
 
           docker manifest push nitra/graphql-engine:${{ env.IMAGE_TAG }}
+
+      - name: create multiarch manifest latest
+        if: github.ref == 'refs/heads/main'
+        run: |
+          docker manifest create \
+          nitra/graphql-engine:latest \
+          --amend nitra/graphql-engine:manifest-amd64-${{ env.IMAGE_TAG }} \
+          --amend nitra/graphql-engine:manifest-arm64-${{ env.IMAGE_TAG }} 
+
+          docker manifest push nitra/graphql-engine:latest
