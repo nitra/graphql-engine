@@ -62,7 +62,6 @@ jobs:
           docker buildx build arm64 \
           --platform linux/arm64 \
           --tag nitra/graphql-engine:manifest-arm64-${{ env.IMAGE_TAG }} \
-          --squash \
           --push
 
       - name: build amd64
@@ -70,7 +69,6 @@ jobs:
           docker buildx build amd64 \
           --platform linux/amd64 \
           --tag nitra/graphql-engine:manifest-amd64-${{ env.IMAGE_TAG }} \
-          --squash \
           --push
 
       - name: create multiarch manifest
