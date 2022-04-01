@@ -3,10 +3,10 @@ on:
   push:
     branches:
       - main
-      - v2.3
+      - v2.4
 
 env:
-  IMAGE_TAG: v2.3
+  IMAGE_TAG: v2.4
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -42,7 +42,7 @@ jobs:
           username: vitaliytv
           password: ${{ steps.secrets.outputs.docker-hub-token }}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Docker Context for Buildx
         id: buildx-context
