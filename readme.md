@@ -17,3 +17,27 @@ docker buildx build amd64/ --progress=plain --platform linux/amd64 --tag nitra/g
 
 docker run -ti --entrypoint=/bin/sh nitra/graphql-engine:manifest-amd64
 ```
+
+## update in Registry
+
+auth:
+
+```bash
+gcloud auth configure-docker eu.gcr.io
+```
+
+stable:
+
+```bash
+docker pull hasura/graphql-engine:v2.5.0.debian.amd64
+docker tag hasura/graphql-engine:v2.5.0.debian.amd64 eu.gcr.io/abinbev-ua/graphql-engine:v2.5.0
+docker push eu.gcr.io/abinbev-ua/graphql-engine:v2.5.0
+```
+
+latest:
+
+```bash
+docker pull hasura/graphql-engine:v2.6.0-beta.1.debian.amd64
+docker tag hasura/graphql-engine:v2.6.0-beta.1.debian.amd64 eu.gcr.io/abinbev-ua/graphql-engine:v2.6.0
+docker push eu.gcr.io/abinbev-ua/graphql-engine:v2.6.0
+```
