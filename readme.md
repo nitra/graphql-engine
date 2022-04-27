@@ -29,9 +29,9 @@ gcloud auth configure-docker eu.gcr.io
 stable:
 
 ```bash
-docker pull hasura/graphql-engine:v2.5.0.debian.amd64
-docker tag hasura/graphql-engine:v2.5.0.debian.amd64 eu.gcr.io/abinbev-ua/graphql-engine:v2.5.0
-docker push eu.gcr.io/abinbev-ua/graphql-engine:v2.5.0
+docker pull hasura/graphql-engine:v2.5.1.debian.amd64
+docker tag hasura/graphql-engine:v2.5.1.debian.amd64 eu.gcr.io/abinbev-ua/graphql-engine:v2.5.1
+docker push eu.gcr.io/abinbev-ua/graphql-engine:v2.5.1
 ```
 
 latest:
