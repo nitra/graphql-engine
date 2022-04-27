@@ -22,6 +22,8 @@ jobs:
       id-token: "write"
 
     steps:
+      - uses: actions/checkout@v3
+
       - id: "auth"
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v0"
@@ -40,8 +42,6 @@ jobs:
         with:
           username: vitaliytv
           password: ${{ steps.secrets.outputs.docker-hub-token }}
-
-      - uses: actions/checkout@v3
 
       - name: Set up Docker Context for Buildx
         id: buildx-context
