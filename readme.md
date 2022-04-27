@@ -37,7 +37,7 @@ docker push eu.gcr.io/abinbev-ua/graphql-engine:v2.5.0
 latest:
 
 ```bash
-docker pull hasura/graphql-engine:v2.6.0-beta.1.debian.amd64
-docker tag hasura/graphql-engine:v2.6.0-beta.1.debian.amd64 eu.gcr.io/abinbev-ua/graphql-engine:v2.6.0
+docker pull hasura/graphql-engine:v2.6.0-beta.2.debian.amd64
+docker tag hasura/graphql-engine:v2.6.0-beta.2.debian.amd64 eu.gcr.io/abinbev-ua/graphql-engine:v2.6.0
 docker push eu.gcr.io/abinbev-ua/graphql-engine:v2.6.0
 ```
