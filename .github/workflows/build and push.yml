@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  IMAGE_TAG: v2.7
+  IMAGE_TAG: v2.8
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
